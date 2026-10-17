@@ -1,0 +1,16 @@
+﻿{
+  "catalog_id": "demo-catalog",
+  "catalog_version_id": "demo-v1",
+  "rows": [
+    {
+      "customer_record_id": "incoming-001",
+      "track_title": "Laylet Saif",
+      "primary_artist": "Lina Kareem"
+    },
+    {
+      "customer_record_id": "incoming-002",
+      "track_title": "Unknown Signal",
+      "primary_artist": "Nova Lake"
+    }
+  ]
+}

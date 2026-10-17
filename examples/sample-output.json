@@ -1,0 +1,14 @@
+﻿[
+  {
+    "source_customer_id": "incoming-001",
+    "selected_target_id": "target-001",
+    "decision": "MATCH",
+    "reason_codes": ["HIGH_SCORE", "CLEAR_MARGIN"]
+  },
+  {
+    "source_customer_id": "incoming-002",
+    "selected_target_id": null,
+    "decision": "NO_MATCH",
+    "reason_codes": ["LOW_BEST_SCORE"]
+  }
+]
