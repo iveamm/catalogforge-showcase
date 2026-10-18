@@ -74,3 +74,12 @@ These are engineering benchmarks, not customer-specific performance guarantees.
 ## Public showcase scope
 
 This repository contains only sanitized documentation and synthetic examples. Production data, customer records, credentials, private datasets, internal paths, and private implementation details are not included.
+
+
+## Full System Overview
+
+CatalogForge is built as a multi-layer AI platform rather than a single matching model.
+
+The private system includes catalog normalization, a music knowledge graph, multiple machine-learning model families, multilingual identity resolution, catalog intelligence, commercial API infrastructure, and customer-owned catalog reconciliation.
+
+See [System Overview](docs/system-overview.md).
