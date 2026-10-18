@@ -1,10 +1,19 @@
-﻿# CatalogForge
+# CatalogForge
 
-CatalogForge is a B2B music catalog reconciliation project.
+CatalogForge is an AI/ML platform for music catalog intelligence and B2B catalog reconciliation.
 
-It helps music companies match messy incoming metadata against their own reference catalogs, especially when spelling, language, and metadata fields do not line up perfectly.
+It turns inconsistent track metadata - including Arabic/Latin spelling and script variants - into ranked candidates and operational MATCH / REVIEW / NO_MATCH decisions against a customer-owned catalog.
 
-This is a small public showcase. All example records are synthetic.
+This public showcase uses only synthetic examples and sanitized architecture documentation.
+
+![CatalogForge AI music catalog platform overview](docs/assets/catalogforge-platform-overview.png)
+
+## Why CatalogForge
+
+- **Multilingual by design:** Arabic and Latin metadata variants are first-class matching signals.
+- **Beyond fuzzy matching:** metadata evidence, knowledge-graph structure, specialized models, and ranking work together.
+- **Operational decisions:** MATCH, REVIEW, and NO_MATCH with ranked alternatives and reason codes.
+- **Customer-owned catalogs:** versioned catalog snapshots and batch reconciliation are part of the product architecture.
 
 ## What it does
 

@@ -83,3 +83,14 @@ A customer can create a versioned reference catalog, submit incoming metadata in
 - structured reason codes
 
 This public repository intentionally shows the architecture and product concepts without exposing private data, internal implementation details, or production assets.
+
+
+## AI and Catalog Intelligence Pipeline
+
+![CatalogForge AI and catalog intelligence pipeline](assets/catalogforge-ai-pipeline.png)
+
+## Extended Platform Architecture
+
+![CatalogForge system architecture](assets/catalogforge-system-architecture.png)
+
+These diagrams are conceptual public views of the platform; private implementation details and production assets are intentionally excluded.
