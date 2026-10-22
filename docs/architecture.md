@@ -1,16 +1,26 @@
-﻿# Architecture
+# Architecture
+
+CatalogForge separates data preparation from serving, so catalog matching does not require loading every research model.
 
 ```mermaid
-flowchart TD
-    A[Customer Catalog] --> B[Catalog Snapshot]
-    B --> C[Versioned Index]
-    D[Incoming Rows] --> E[Resolver]
-    C --> E
-    E --> F[Candidate Ranking]
-    F --> G[Decision Layer]
-    G --> H[MATCH]
-    G --> I[REVIEW]
-    G --> J[NO MATCH]
+flowchart LR
+    subgraph Data["Catalog preparation · Python"]
+        A["Source metadata"] --> B["Normalization & evidence"]
+        B --> C[("Canonical catalog")]
+        C -.-> G["Graph / ML research"]
+    end
+    subgraph Match["Catalog resolution · Node.js"]
+        D["Customer reference catalog"] --> E["Versioned index"]
+        F["Incoming records"] --> R["Identity + candidate ranking"]
+        E --> R
+        R --> H{"Decision"}
+        H --> I["MATCH"]
+        H --> J["REVIEW"]
+        H --> K["NO_MATCH"]
+    end
+    C -.-> E
 ```
 
-CatalogForge is designed around customer-owned reference catalogs. Incoming rows are compared against a selected catalog version, ranked, and turned into an operational decision.
+The main flow is reference-catalog matching: resolve Arabic/Latin variants, rank candidates, and return a traceable decision. Research models are separate from the lightweight matching runtime.
+
+[Back to overview](../README.md)

@@ -1,12 +1,8 @@
-﻿# API Example
+# API shape
 
-Create a catalog:
+The private API supports customer reference catalogs and batch reconciliation. Routes and payloads below are illustrative; they are not a public endpoint.
 
-`POST /v1/catalogs`
-
-Submit a resolution job:
-
-`POST /v1/resolve/jobs`
+Create a reference catalog with `POST /v1/catalogs`. Submit rows with `POST /v1/resolve/jobs` using the appropriate catalog version.
 
 ```json
 {
@@ -22,17 +18,17 @@ Submit a resolution job:
 }
 ```
 
-Example result:
+A resolved row may contain:
 
 ```json
 {
   "source_customer_id": "incoming-001",
   "selected_target_id": "target-001",
   "decision": "MATCH",
-  "confidence": 0.97,
-  "calibrated_probability": false,
   "reason_codes": ["HIGH_SCORE", "CLEAR_MARGIN"]
 }
 ```
 
-All records shown here are synthetic.
+All IDs, names, and decisions here are synthetic. A score is not an independently calibrated probability, and actual outcomes depend on catalog evidence and decision policy.
+
+[Back to overview](../README.md)

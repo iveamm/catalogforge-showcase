@@ -1,94 +1,31 @@
 # CatalogForge
 
-CatalogForge is an AI/ML platform for music catalog intelligence and B2B catalog reconciliation.
+**Music catalog matching, built for messy metadata.**
 
-It turns inconsistent track metadata - including Arabic/Latin spelling and script variants - into ranked candidates and operational MATCH / REVIEW / NO_MATCH decisions against a customer-owned catalog.
+The same recording can appear under different spellings, scripts, or incomplete credits. CatalogForge compares incoming music metadata with a versioned reference catalog, ranks likely matches, and keeps uncertain cases visible for review.
 
-This public showcase uses only synthetic examples and sanitized architecture documentation.
+![CatalogForge catalog reconciliation flow](docs/assets/catalogforge-flow.svg)
 
-![CatalogForge AI music catalog platform overview](docs/assets/catalogforge-platform-overview.png)
+### What it handles
 
-## Why CatalogForge
+- **Cross-script names** — Arabic and Latin spellings, transliteration, and title variations.
+- **Catalog reconciliation** — customer-owned reference catalogs, versioned snapshots, and batch resolution.
+- **Reviewable outcomes** — `MATCH`, `REVIEW`, or `NO_MATCH`, with ranked alternatives and reason codes.
 
-- **Multilingual by design:** Arabic and Latin metadata variants are first-class matching signals.
-- **Beyond fuzzy matching:** metadata evidence, knowledge-graph structure, specialized models, and ranking work together.
-- **Operational decisions:** MATCH, REVIEW, and NO_MATCH with ranked alternatives and reason codes.
-- **Customer-owned catalogs:** versioned catalog snapshots and batch reconciliation are part of the product architecture.
+### A record, two representations
 
-## What it does
+| Incoming metadata | Reference catalog |
+| --- | --- |
+| **Laylet Saif** · Lina Kareem | **ليلة صيف** · لينا كريم |
 
-- Bring-your-own-catalog reconciliation
-- Versioned catalog snapshots
-- Batch resolution jobs
-- Arabic / Latin identity matching
-- Ranked candidate matching
-- MATCH / REVIEW / NO_MATCH decisions
-- Reason codes for operators
+The resolver compares the available evidence and proposes candidates. The decision layer can accept a strong match, request review, or leave the record unmatched. This pair is illustrative, not a measured accuracy result.
 
-## Workflow
+### How it fits together
 
-```mermaid
-flowchart LR
-    A[Customer Catalog] --> B[Versioned Index]
-    C[Incoming Metadata] --> D[CatalogForge Resolve]
-    B --> D
-    D --> E[MATCH]
-    D --> F[REVIEW]
-    D --> G[NO MATCH]
-```
+Python handles acquisition and catalog preparation. The Node.js layer serves identity resolution, catalog matching, and APIs. Graph and ML research support separate intelligence workflows; not every model runs for a catalog-match request.
 
-## Example
+[Architecture](docs/architecture.md) · [API shape](docs/api-examples.md) · [Synthetic input](examples/sample-input.json) · [Synthetic output](examples/sample-output.json)
 
-```json
-{
-  "customer_record_id": "incoming-001",
-  "track_title": "Laylet Saif",
-  "primary_artist": "Lina Kareem"
-}
-```
+---
 
-Possible result:
-
-```json
-{
-  "source_customer_id": "incoming-001",
-  "selected_target_id": "target-001",
-  "decision": "MATCH",
-  "reason_codes": ["HIGH_SCORE", "CLEAR_MARGIN"]
-}
-```
-
-## Technical notes
-
-The private implementation uses Node.js, Python, SQLite, REST APIs, OpenAPI, graph-based ranking, automated tests, and container-oriented deployment.
-
-Selected internal engineering benchmarks:
-
-| Component | Metric | Result |
-|---|---|---:|
-| Arabic / Latin identity | MRR | ~0.790 |
-| Arabic / Latin identity | Recall@1 | ~0.706 |
-| Arabic / Latin identity | Recall@5 | ~0.898 |
-| ComplEx graph model | MRR | ~0.647 |
-| ComplEx graph model | Hits@10 | ~0.812 |
-
-These are engineering benchmarks, not customer-specific performance guarantees.
-
-## More
-
-- [Architecture](docs/architecture.md)
-- [API example](docs/api-examples.md)
-- [Synthetic examples](examples/)
-
-## Public showcase scope
-
-This repository contains only sanitized documentation and synthetic examples. Production data, customer records, credentials, private datasets, internal paths, and private implementation details are not included.
-
-
-## Full System Overview
-
-CatalogForge is built as a multi-layer AI platform rather than a single matching model.
-
-The private system includes catalog normalization, a music knowledge graph, multiple machine-learning model families, multilingual identity resolution, catalog intelligence, commercial API infrastructure, and customer-owned catalog reconciliation.
-
-See [System Overview](docs/system-overview.md).
+This is a public view of an actively developed private system. Examples are synthetic. Independent accuracy validation and commercial deployment readiness are ongoing work.
